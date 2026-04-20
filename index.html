@@ -79,11 +79,14 @@
 
             // add the new image to the document's body (so it's visible!)
             document.body.prepend(new_image);
-
-            // last step! set up the click. 
-            // You want your image to 'listen' for clicks. When its clicked, it adds a new image.
-            new_image.addEventListener('click', add_image);
         }
+
+        document.body.addEventListener('click', function (e) {
+            if (e.target.closest('a')) {
+                return;
+            }
+            add_image();
+        });
 
         // so that the first image appears when the page load, run the function once.
         add_image();
